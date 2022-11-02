@@ -1,0 +1,52 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+h2 {
+    color: #855bc7;
+}
+
+.datepicker > input {
+    padding: 0.528rem 0.75rem;
+    border: 1px solid #CED4DA;
+    border-radius: 5px;
+}
+
+.mat-datepicker-toggle-default-icon {
+    color:#855bc7;
+    width: 40px !important;
+    height: 40px !important;
+ }
+
+.submit-button {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem!important;
+
+    div > button {
+        background-color: #855bc7;
+        border: 1px solid #855bc7;
+    }
+
+    div > button:hover {
+        background-color: #7342c2;
+        border: 1px solid #7342c2;
+    }
+
+    div > button:focus {
+        background-color: #7342c2 !important;
+        border: 1px solid #7342c2 !important;
+    }
+}
+
+input:focus {
+    border-color: #855bc7 !important;
+    outline: none;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+
+}
+
+.addTodo {
+    height: 100px;
+}

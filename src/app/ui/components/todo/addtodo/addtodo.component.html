@@ -1,0 +1,37 @@
+<div class="addTodo">
+    <form [formGroup]="todoForm" novalidate (ngSubmit)="add()">
+        <div class="row">
+            <div class="col">
+                <div class="form-group mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input type="title" class="form-control" id="title" formControlName="title" [ngClass]="{ 'is-invalid': submitted && f['title'].errors }">
+                </div>
+                <div *ngIf="submitted && f['title'].errors" class="invalid-feedback" style="display: inline;">
+                    <div *ngIf="f['title'].errors['required']">Title is required</div>
+                    <div *ngIf="f['title'].errors['minlength']">
+                        Title must be at least 2 characters
+                    </div>
+                    <div *ngIf="f['title'].errors['maxlength']">
+                        Title must not exceed 250 characters
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group mb-3">
+                    <label for="dueDate" class="form-label">Due Date</label>
+                    <div class="datepicker">
+                        <input matInput [matDatepicker]="picker" [min]="dueDate" formControlName="dueDate">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </div>
+                </div>
+            </div>
+            <div class="col submit-button">
+                <div class="form-group mb-3">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+            <div class="col"></div>
+        </div>
+    </form>
+</div>

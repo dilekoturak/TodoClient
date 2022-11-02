@@ -1,0 +1,95 @@
+<div>
+    <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-link active" id="nav-pending-tab" data-bs-toggle="tab" href="#nav-pending" role="tab" aria-controls="nav-pending" aria-selected="true">Pending</a>
+            <a class="nav-link" id="nav-overdue-tab" data-bs-toggle="tab" href="#nav-overdue" role="tab" aria-controls="nav-overdue" aria-selected="false">Overdue</a>
+        </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-pending" role="tabpanel" aria-labelledby="nav-pending-tab">
+            <table mat-table [dataSource]="pendingDataSource" matSort class="mat-elevation-z8">          
+                <!-- Title Column -->
+                <ng-container matColumnDef="title">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+                  <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                </ng-container>
+              
+                <!-- DueDate Column -->
+                <ng-container matColumnDef="dueDate">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> DueDate </th>
+                  <td mat-cell *matCellDef="let element"> {{element.dueDate | moment: 'dddd D MMM YYYY'}} </td>
+                </ng-container>
+
+                <!-- Completed Column -->
+                <ng-container matColumnDef="completed">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Is Completed </th>
+                    <td mat-cell *matCellDef="let element">
+                        {{element.completed}}
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="delete">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let element" 
+                        appDelete 
+                        [id]="element.id"
+                        (pendingCallback)="getPendingItems()" 
+                        (overdueCallback)="getOverdueItems()" 
+                    class="action-link"></td>
+                </ng-container>
+
+                <ng-container matColumnDef="edit">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let element" class="action-link">
+                        <img (click)="openDialog(element)" src="../../../../../assets/edit.png" width="25" height="25">
+                    </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator #pendingPaginator="matPaginator" (page) = "pendingPageChanged()"
+                 [pageSizeOptions]="[5, 10, 20]"
+                 showFirstLastButtons 
+                 aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+        <div class="tab-pane fade" id="nav-overdue" role="tabpanel" aria-labelledby="nav-overdue-tab">
+            <table mat-table [dataSource]="overdueDataSource" matSort class="mat-elevation-z8">          
+                <ng-container matColumnDef="title">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+                  <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="dueDate">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> DueDate </th>
+                  <td mat-cell *matCellDef="let element"> {{element.dueDate | moment: 'dddd D MMM YYYY'}} </td>
+                </ng-container>
+
+                <!-- Completed Column -->
+                <ng-container matColumnDef="completed">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Completed </th>
+                    <td mat-cell *matCellDef="let element"> {{element.completed}} </td>
+                </ng-container>
+              
+                <ng-container matColumnDef="delete">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let element" class="action-link"></td>
+                </ng-container>
+
+                <ng-container matColumnDef="edit">
+                    <th mat-header-cell *matHeaderCellDef> </th>
+                    <td mat-cell *matCellDef="let element" class="action-link"></td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+            <mat-paginator #overduePaginator="matPaginator" (page) = "overduePageChanged()"
+                [pageSizeOptions]="[5, 10, 20]"
+                showFirstLastButtons 
+                aria-label="Select page of periodic elements">
+            </mat-paginator>
+        </div>
+    </div>
+</div>

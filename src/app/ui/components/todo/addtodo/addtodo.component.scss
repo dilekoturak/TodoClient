@@ -1,0 +1,26 @@
+.submit-button {
+  display: flex;
+  align-items: center;
+  padding-top: 20px;
+}
+.submit-button div > button {
+    background-color: #855bc7;
+    border: 1px solid #855bc7;
+}
+
+.datepicker > input {
+    padding: 0.528rem 0.75rem;
+    border: 1px solid #CED4DA;
+    border-radius: 5px;
+    width: auto;
+}
+
+input.mat-input-element {
+    margin-top: -0.0625em;
+}
+
+.mat-datepicker-toggle-default-icon {
+    color: #855bc7;
+    width: 40px !important;
+    height: 40px !important;
+}
