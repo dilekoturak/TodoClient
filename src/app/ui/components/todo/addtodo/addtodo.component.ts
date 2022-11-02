@@ -26,8 +26,7 @@ export class AddtodoComponent implements OnInit {
           Validators.required,
           Validators.required,
           Validators.minLength(2),
-          Validators.maxLength(250),
-          Validators.pattern('^[_A-z0-9]*((-|s)*[_A-z0-9])*$')
+          Validators.maxLength(250)
         ]],
         dueDate: []
       }
